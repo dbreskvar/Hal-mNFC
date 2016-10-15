@@ -26,10 +26,11 @@
         <activity android:name=".ReceiveActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="application/dbug.halmbills" />
             </intent-filter>
-
         </activity>
     </application>
 

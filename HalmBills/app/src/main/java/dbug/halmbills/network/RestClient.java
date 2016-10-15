@@ -67,7 +67,7 @@ public class RestClient {
 
                 //If additional API KEY is requested, add it here under headers
                 Request.Builder builder = request.newBuilder()
-                        //.header("Accept", "application/json")
+                        .header("Content-Type", "application/json")
                         .method(request.method(), request.body());
 
                 String token;
@@ -89,7 +89,11 @@ public class RestClient {
                 Log.e("Token", "Authorization: " + token);
 
                 if (token != null) builder.header("Authorization", token);
+
+                Log.e("Headers", "where ma headers at: " + builder);
                 Request main = builder.build();
+
+                Log.e("Headers", "where ma headers at: " + main.headers());
 
                 return chain.proceed(main);
             }

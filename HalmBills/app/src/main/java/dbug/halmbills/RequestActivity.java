@@ -30,7 +30,16 @@ public class RequestActivity extends AppCompatActivity implements NfcAdapter.Cre
 
         NdefRecord aar = NdefRecord.createApplicationRecord("dbug.halmbills");
 
-        NdefMessage message = new NdefMessage(new NdefRecord[]{mimeRecord, aar});
+        NdefRecord amount = NdefRecord.createMime("application/dbug.halmbills",
+                "amount:1000".getBytes(Charset.defaultCharset()));
+
+        NdefRecord purpose = NdefRecord.createMime("application/dbug.halmbills",
+                "purpose:Test Call".getBytes(Charset.defaultCharset()));
+
+        NdefRecord channelId = NdefRecord.createMime("application/dbug.halmbills",
+                "channelid:Hal mNFC".getBytes(Charset.defaultCharset()));
+
+        NdefMessage message = new NdefMessage(new NdefRecord[]{mimeRecord, aar, amount, purpose, channelId});
 
         nfcAdapter.setNdefPushMessage(message, this);
 
