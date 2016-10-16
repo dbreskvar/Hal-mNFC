@@ -2,14 +2,14 @@ package dbug.halmbills.models;
 
 public class Sale {
 
-    Integer amount;
+    Double amount;
     String currency, purpose, paymentreference, orderid, channelid;
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

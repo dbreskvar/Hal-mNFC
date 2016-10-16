@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,31 +9,67 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="dbug.halmbills.MainActivity">
+    tools:context="dbug.halmbills.MainActivity"
+    android:background="#ebebeb">
 
     <Button
-        android:text="Request"
+        android:text="Test EndPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/request_nfc"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/test_endpoint"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
     <Button
         android:text="Receive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/receive_nfc"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="gone" />
 
-    <Button
-        android:text="Test EndPoint"
+    <TextView
+        android:text="NFC Payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/test_endpoint" />
+        android:textSize="40sp"
+        android:id="@+id/textView2" />
+
+    <Button
+        android:text="Request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/request_nfc"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="gone" />
+
+    <Button
+        android:background="@drawable/request_payment"
+        android:layout_width="224dp"
+        android:layout_height="262dp"
+        android:id="@+id/request_btn"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:background="@drawable/make_payment"
+        android:layout_width="224dp"
+        android:layout_height="262dp"
+        android:id="@+id/pay_btn"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/request_btn"
+        android:layout_alignStart="@+id/request_btn" />
 </RelativeLayout>

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dbug.halmbills.models.TestObject;
 import dbug.halmbills.network.APIs;
 import dbug.halmbills.network.RestClient;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button request = (Button) findViewById(R.id.request_nfc);
+        Button request = (Button) findViewById(R.id.request_btn);
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button receive = (Button) findViewById(R.id.receive_nfc);
+        Button receive = (Button) findViewById(R.id.pay_btn);
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

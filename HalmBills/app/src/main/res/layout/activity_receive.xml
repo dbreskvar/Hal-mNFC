@@ -10,4 +10,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dbug.halmbills.ReceiveActivity">
 
+    <TextView
+        android:text="From: Miha Kotnik (+386 40 848 505)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:textSize="21sp"
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:text="Requests amount of: 1000€"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginTop="12dp"
+        android:textSize="21sp"
+        android:id="@+id/textViewAmount" />
+
+    <TextView
+        android:text="For purpose of: Steam purchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewAmount"
+        android:layout_alignLeft="@+id/textViewAmount"
+        android:layout_alignStart="@+id/textViewAmount"
+        android:layout_marginTop="12dp"
+        android:textSize="21sp"
+        android:id="@+id/textViewDesc" />
+
+    <Button
+        android:background="@drawable/request_256"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/pay_received"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:background="@drawable/decline_128"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/decline_received"
+        android:layout_alignBottom="@+id/pay_received"
+        android:layout_alignRight="@+id/pay_received"
+        android:layout_alignEnd="@+id/pay_received" />
+
 </RelativeLayout>

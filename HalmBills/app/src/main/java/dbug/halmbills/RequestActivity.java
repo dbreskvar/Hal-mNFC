@@ -4,20 +4,41 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.nio.charset.Charset;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RequestActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
     NfcAdapter nfcAdapter;
 
+    EditText amount_edit;
+    EditText description_edit;
+    Button requestRequest;
+    Button requestDecline;
+    TextView info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+        amount_edit = (EditText) findViewById(R.id.amount_edittext);
+        description_edit = (EditText) findViewById(R.id.desc_edittext);
+        requestRequest = (Button) findViewById(R.id.request_request);
+        requestDecline = (Button) findViewById(R.id.request_decline);
+        info = (TextView) findViewById(R.id.info_text);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
@@ -25,16 +46,47 @@ public class RequestActivity extends AppCompatActivity implements NfcAdapter.Cre
             return;
         }
 
+        requestRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendRequest();
+            }
+        });
+
+        requestDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
+        //nfcAdapter.setNdefPushMessageCallback(this, this);
+    }
+
+    @Override
+    public NdefMessage createNdefMessage(NfcEvent nfcEvent) {
+        return null;
+    }
+
+    void sendRequest() {
+
         NdefRecord mimeRecord = NdefRecord.createMime("application/dbug.halmbills",
                 "Test NFC application".getBytes(Charset.defaultCharset()));
 
         NdefRecord aar = NdefRecord.createApplicationRecord("dbug.halmbills");
 
-        NdefRecord amount = NdefRecord.createMime("application/dbug.halmbills",
-                "amount:1000".getBytes(Charset.defaultCharset()));
+        String amountString = "amount:" + amount_edit.getText().toString();
 
+        NdefRecord amount = NdefRecord.createMime("application/dbug.halmbills",
+                amountString.getBytes(Charset.defaultCharset()));
+
+        String purposeString = "";
+        if (description_edit.getText().length() > 0) {
+            purposeString = "purpose:" + description_edit.getText().toString();
+        }
         NdefRecord purpose = NdefRecord.createMime("application/dbug.halmbills",
-                "purpose:Test Call".getBytes(Charset.defaultCharset()));
+                purposeString.getBytes(Charset.defaultCharset()));
 
         NdefRecord channelId = NdefRecord.createMime("application/dbug.halmbills",
                 "channelid:Hal mNFC".getBytes(Charset.defaultCharset()));
@@ -43,11 +95,8 @@ public class RequestActivity extends AppCompatActivity implements NfcAdapter.Cre
 
         nfcAdapter.setNdefPushMessage(message, this);
 
-        //nfcAdapter.setNdefPushMessageCallback(this, this);
-    }
-
-    @Override
-    public NdefMessage createNdefMessage(NfcEvent nfcEvent) {
-        return null;
+        requestRequest.setVisibility(View.INVISIBLE);
+        requestDecline.setVisibility(View.INVISIBLE);
+        info.setVisibility(View.VISIBLE);
     }
 }
