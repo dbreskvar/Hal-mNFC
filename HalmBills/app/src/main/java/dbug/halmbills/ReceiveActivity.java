@@ -27,6 +27,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
     TextView textViewAmount;
     TextView textViewDesc;
+    TextView paymentInfo;
     Button payReceived;
     Button declineReceived;
 
@@ -37,6 +38,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
         textViewAmount = (TextView) findViewById(R.id.textViewAmount);
         textViewDesc = (TextView) findViewById(R.id.textViewDesc);
+        paymentInfo = (TextView) findViewById(R.id.payment_info_text);
         payReceived = (Button) findViewById(R.id.pay_received);
         declineReceived = (Button) findViewById(R.id.decline_received);
 
@@ -140,6 +142,9 @@ public class ReceiveActivity extends AppCompatActivity {
                     public void onResponse(Call<SaleModel> call, Response<SaleModel> response) {
                         Log.e("onResponse", "Response: " + response.message() + " CODE: " + response.headers());
                         Log.e("Call URL", "URL: " + response.body() + call.request().url());
+                        payReceived.setVisibility(View.INVISIBLE);
+                        declineReceived.setVisibility(View.INVISIBLE);
+                        paymentInfo.setVisibility(View.VISIBLE);
                     }
 
                     @Override
