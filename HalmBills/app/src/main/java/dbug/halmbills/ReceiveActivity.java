@@ -140,7 +140,7 @@ public class ReceiveActivity extends AppCompatActivity {
                 restclient.createSale(sale).enqueue(new Callback<SaleModel>() {
                     @Override
                     public void onResponse(Call<SaleModel> call, Response<SaleModel> response) {
-                        Log.e("onResponse", "Response: " + response.message() + " CODE: " + response.headers());
+                        Log.e("onResponse", "Response: " + response.message() + " CODE: " + response.code());
                         Log.e("Call URL", "URL: " + response.body() + call.request().url());
                         payReceived.setVisibility(View.INVISIBLE);
                         declineReceived.setVisibility(View.INVISIBLE);

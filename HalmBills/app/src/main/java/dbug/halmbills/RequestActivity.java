@@ -6,6 +6,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,7 +61,13 @@ public class RequestActivity extends AppCompatActivity implements NfcAdapter.Cre
             }
         });
 
-
+        nfcAdapter.setOnNdefPushCompleteCallback(new NfcAdapter.OnNdefPushCompleteCallback() {
+            @Override
+            public void onNdefPushComplete(NfcEvent nfcEvent) {
+                Log.e("NFC Complete", "NFC has been delivered");
+                RequestActivity.this.finish();
+            }
+        }, this);
         //nfcAdapter.setNdefPushMessageCallback(this, this);
     }
 

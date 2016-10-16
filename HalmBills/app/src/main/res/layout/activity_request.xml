@@ -23,7 +23,7 @@
         android:background="#21c0f1"/>
 
     <TextView
-        android:text="Enter Amount"
+        android:text="Enter Amount (EUR)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
